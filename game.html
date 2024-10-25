@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permainan Tebak Angka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tebak Angka!</h1>
+    <p>Saya telah memilih angka antara 1 dan 20. Coba tebak!</p>
+    
+    <input type="number" id="tebakan" placeholder="Masukkan tebakan Anda">
+    <button onclick="cekTebakan()">Kirim Tebakan</button>
+
+    <p id="pesan"></p>
+
+    <script>
+        const angkaRahasia = Math.floor(Math.random() * 20) + 1;
+        let jumlahTebakan = 0;
+
+        function cekTebakan() {
+            const tebakan = parseInt(document.getElementById('tebakan').value);
+            const pesan = document.getElementById('pesan');
+            jumlahTebakan++;
+
+            if (tebakan < 1 || tebakan > 100 || isNaN(tebakan)) {
+                pesan.textContent = "Tolong masukkan angka antara 1 dan 100.";
+            } else if (tebakan < angkaRahasia) {
+                pesan.textContent = "Tebakan Anda terlalu rendah.";
+            } else if (tebakan > angkaRahasia) {
+                pesan.textContent = "Tebakan Anda terlalu tinggi.";
+            } else {
+                pesan.textContent = `Selamat! Anda berhasil menebak angka ${angkaRahasia} dalam ${jumlahTebakan} tebakan.`;
+            }
+        }
+    </script>
+
+</body>
+</html>
